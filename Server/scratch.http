@@ -19,7 +19,7 @@ MyHeader: MyValue
 GET http://localhost:3003/api/v1/tuna
 
 ###
-GET http://localhost:3003/api/v1/exercises
+GET http://localhost:3003/api/v1/exercises/search?q=lunges
 
 ###
 DELETE http://localhost:3003/api/v1/exercises/1
@@ -44,8 +44,8 @@ Content-Type: application/json
 
 [
     {
-      "id": 2,
-      "title": "Jumping-Jacks",
+      "id": 13,
+      "title": "Jum8ping-Jacks",
       "description": "An exercise where you jump up and down and flail your arms like a psychopath.",
       "difficulty": "Easy"
     }
