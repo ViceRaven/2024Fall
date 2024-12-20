@@ -11,6 +11,14 @@ app
       .then((x) => res.send(x))
       .catch(next);
   })
+  .get("/search", (req, res, next) => {
+      const query = req.query.q;
+      model
+        .search(query)
+        .then((x) => res.send(x))
+        .catch(next);
+    })
+    
   .get("/:id", (req, res, next) => {
     const id = req.params.id;
     model
@@ -18,6 +26,8 @@ app
       .then((x) => res.send(x))
       .catch(next);
   })
+  
+
   .post("/", (req, res, next) => {
     model
       .add(req.body)

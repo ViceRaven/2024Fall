@@ -20,6 +20,12 @@ export function update(user: User) {
 export function remove(id: number) {
   return api<DataEnvelope<User>>(`users/${id}`, undefined, 'DELETE')
 }
+ export function search(user: User) {
+  return api<DataEnvelope<User>>(`users/${user.firstName}`)
+}
+
+
+
 
 
 export interface User {

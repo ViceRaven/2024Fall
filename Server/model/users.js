@@ -13,6 +13,23 @@ const conn = getConnection();
  * @typedef {import("../../Client/src/models/users").User} User
  */
 
+
+async function search(query){
+    const { data, error, count } = await conn
+      .from("users")
+      .select("*", { count: "estimated" })
+      .or(
+        `firstName.ilike.%${query}%,lastName.ilike.%${query}%,email.ilike.%${query}%`
+      );
+    return {
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+        total: count,
+    };
+}
+
+
 /**
  * Get all users
  * @returns {Promise<DataListEnvelope<User>>}
@@ -130,5 +147,5 @@ module.exports = {
   add,
   update,
   remove,
-
+  search,
 };

@@ -48,11 +48,25 @@ async function get(id) {
     };
   }
 
-/**
- * Add a new exercise
- * @param {Exercise} exercise
- * @returns {Promise<DataEnvelope<Exercise>>}
- */
+
+
+async function search(query){
+    const { data, error, count } = await conn
+      .from("exercises")
+      .select("*", { count: "estimated" })
+      .or(
+        `title.ilike.%${query}%,description.ilike.%${query}%`
+      );
+    return {
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+        total: count,
+    };
+}
+
+
+
 async function add(exercise) {
     try {
         const { data, error } = await conn
@@ -158,4 +172,5 @@ module.exports = {
     add,
     update,
     remove,
+    search,
 };

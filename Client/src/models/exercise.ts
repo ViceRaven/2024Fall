@@ -21,6 +21,9 @@ export function remove(id: number) {
     return api<DataEnvelope<Exercise>>(`exercises/${id}`, undefined, 'DELETE')
 }
 
+ export function search(exercise: Exercise) {
+  return api<DataEnvelope<Exercise>>(`exercises/${exercise.title}`, undefined, 'DELETE')
+ }
 
 
 
